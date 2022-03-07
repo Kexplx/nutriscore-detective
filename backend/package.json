@@ -1,0 +1,20 @@
+{
+  "name": "barcode-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "deploy": "gcloud app deploy --project cool-artwork-234702 -v 1 --quiet"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.3",
+    "javascript-barcode-reader": "^0.6.9",
+    "quagga": "^0.12.1",
+    "text-from-image": "^1.1.1"
+  }
+}
