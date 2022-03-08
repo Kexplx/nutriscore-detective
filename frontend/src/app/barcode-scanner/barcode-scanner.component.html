@@ -1,0 +1,10 @@
+<div id="stream">
+  <div *ngIf="!isScanning" style="position: absolute; z-index: -5">
+    <app-loader text="Initialisiere Kamera"></app-loader>
+  </div>
+
+  <div *ngIf="isScanning" class="blob red"></div>
+
+  <video src=""></video>
+  <canvas style="display: none" class="drawingBuffer"></canvas>
+</div>

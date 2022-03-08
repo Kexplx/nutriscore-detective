@@ -1,0 +1,52 @@
+@import url(reset.css);
+@import url(utils.css);
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+body * {
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
+h2 {
+  font-size: 1.2rem;
+}
+
+strong {
+  font-weight: 600;
+}
+
+small {
+  font-size: 0.9rem;
+}
+
+a {
+  color: blue;
+  text-decoration: none;
+  transition: var(--transition);
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+button {
+  border: 0;
+  padding: 10px;
+  font-size: 1rem;
+  border-radius: 5px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px, rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: rgb(240, 240, 240);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+button:hover {
+  background-color: rgb(230, 230, 230);
+}

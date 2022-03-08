@@ -1,0 +1,26 @@
+<div class="tr mt-05">
+  <span>Produktname</span>
+  <span>{{ product.name }}</span>
+</div>
+
+<div class="tr mt-05">
+  <span>Barcode</span>
+  <span>{{ product.barcode }}</span>
+</div>
+
+<div class="tr mt-05">
+  <span>Hersteller / Marke</span>
+  <span>{{ product.brand }}</span>
+</div>
+
+<div class="tr mt-05">
+  <span>Größe</span>
+  <span>{{ product.quantity }}</span>
+</div>
+
+<div class="tr mt-05">
+  <strong>Nutri-Score</strong>
+  <span>
+    <app-nutriscore [grade]="product.nutriscoreGrade"></app-nutriscore>
+  </span>
+</div>

@@ -1,0 +1,44 @@
+name: CI Master
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'frontend/**'
+jobs:
+  ubuntu-build:
+    runs-on: ubuntu-latest
+    env:
+      working-directory: ./frontend
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16.10.0'
+
+      - name: Write commit sha to environment.prod.ts
+        run: |
+          sed -i "s/REPLACE_1/$GITHUB_SHA/" src/environments/environment.prod.ts
+          now=$(date +"%Y-%m-%dT%H:%M:%S%z")
+          sed -i "s/REPLACE_2/$now/" src/environments/environment.prod.ts
+        working-directory: ./frontend
+
+      - name: Install npm packages
+        run: npm i
+        working-directory: ${{env.working-directory}}
+
+      - name: Build for production
+        run: npm run build:ci
+        working-directory: ${{env.working-directory}}
+
+      # - name: Run unit tests
+      #   run: npm run test
+      #   working-directory: ${{env.working-directory}}
+
+      - name: Deploy to GitHub Pages
+        uses: JamesIves/github-pages-deploy-action@3.4.9
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          folder: frontend/dist/nutriscore-detective
