@@ -9,7 +9,7 @@ export class ProductFactory {
         return undefined;
       }
 
-      const pattern = /(\d+) ?(\w+)/;
+      const pattern = /(\d?[\.,]?\d+) ?(\w+)/;
       const groups = pattern.exec(quantity);
 
       return `${groups![1]} ${groups![2]}`;
