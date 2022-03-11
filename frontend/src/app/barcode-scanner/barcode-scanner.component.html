@@ -8,3 +8,8 @@
   <video src=""></video>
   <canvas style="display: none" class="drawingBuffer"></canvas>
 </div>
+
+<p *ngIf="showInvalidBarcodeError" class="mt-1">
+  <app-error-alert header="Dieses Produkt gibt es nicht in unserer Datenbank" body="Bitte stellen Sie sicher, dass es sich um ein Lebensmittel aus einem deutschen Geschäft handelt.">
+  </app-error-alert>
+</p>

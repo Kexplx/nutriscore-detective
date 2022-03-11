@@ -1,5 +1,6 @@
 import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import Quagga from '@ericblade/quagga2';
+import { Subscription, timer } from 'rxjs';
 
 @Component({
   selector: 'app-barcode-scanner',
@@ -9,11 +10,11 @@ import Quagga from '@ericblade/quagga2';
 export class BarcodeScannerComponent implements OnInit, OnDestroy {
   @Output() detect = new EventEmitter<string>();
 
-  barcodeCountMap: Map<string, number> = new Map();
-
+  distinctBarcodes: string[] = [];
   isScanning = false;
+  showInvalidBarcodeError = false;
 
-  emitTimeout?: ReturnType<typeof setTimeout>;
+  showInvalidBarcodeErrorDelaySub?: Subscription;
 
   ngOnInit(): void {
     Quagga.init(
@@ -37,25 +38,29 @@ export class BarcodeScannerComponent implements OnInit, OnDestroy {
     );
 
     Quagga.onDetected(result => {
+      // If our parent hasn't found a product for 3 sec after we
+      // sent them the first barcode, we can be pretty sure that
+      // the product with the barcode does not exist in the db
+      // and inform the user that scanning the same product
+      // any further would be pointless.
+      if (!this.showInvalidBarcodeErrorDelaySub) {
+        this.showInvalidBarcodeErrorDelaySub = timer(3000).subscribe(
+          () => (this.showInvalidBarcodeError = true),
+        );
+      }
+
       const barcode = result.codeResult.code;
       if (!barcode) {
         return;
       }
 
-      let barcodeCount = this.barcodeCountMap.get(barcode) || 0;
-      barcodeCount++;
-
-      this.barcodeCountMap.set(barcode, barcodeCount);
-
-      if (!this.emitTimeout) {
-        this.emitTimeout = setTimeout(() => {
-          const [barcodeWithHighestCount] = Array.from(this.barcodeCountMap.entries()).reduce(
-            (acc, curr) => (curr[1] > acc[1] ? curr : acc),
-          );
-
-          this.detect.emit(barcodeWithHighestCount);
-        }, 1000);
+      const isOld = this.distinctBarcodes.includes(barcode);
+      if (isOld) {
+        return;
       }
+
+      this.distinctBarcodes.push(barcode);
+      this.detect.emit(barcode);
     });
   }
 

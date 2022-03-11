@@ -19,55 +19,26 @@
   <div *ngIf="step === 0" class="img-upload-container mt-3" (click)="onStartScanning()">
     <div>
       <img class="img-upload-container__icon" src="assets/img/barcode.png" alt="Camera" />
-      <p class="img-upload-container__placeholder">Strichcode scannen</p>
+      <p><strong>Strichcode scannen</strong></p>
     </div>
   </div>
 
-  <div *ngIf="step === 1" class="mt-3">
+  <div *ngIf="step === 1 && !product" class="mt-3">
     <app-barcode-scanner (detect)="onBarcodeDetect($event)"></app-barcode-scanner>
-  </div>
-
-  <div *ngIf="step === 2" class="mt-3">
-    <p>
-      <strong class="fg-success">&#10003;</strong>
-      <strong class="ml-1">
-        EAN-13 Strichcode erkannt: <span class="highlighted-barcode">{{ barcode | ean13 }}</span></strong
-      >
-    </p>
-
-    <button (click)="onCalculateNutriscoreClick()" class="btn-calculate-score mt-2">Nutri-Score berechnen</button>
-  </div>
-
-  <div *ngIf="step === 3" class="mt-3">
-    <app-loader text="Nutri-Score wird berechnet"></app-loader>
   </div>
 
   <div *ngIf="product" class="mt-3">
     <app-product-details [product]="product"></app-product-details>
   </div>
 
-  <div *ngIf="productNotFoundError" class="mt-3">
-    <app-error-alert
-      [header]="'Das Produkt mit dem Strichcode ' + barcode + ' existiert nicht in unserer Datenbank.'"
-      body="Unsere Datenbank enthält mehr als 170.000 Lebensmittel doch ihres war nicht dabei. Bitte versuchen Sie es in einiger Zeit erneut."
-    ></app-error-alert>
-  </div>
-
-  <div *ngIf="productIncompleteError" class="mt-3">
-    <app-error-alert
-      header="Produkt unvollständig."
-      body="Das Produkt wurde zwar in unserer Datenbank gefunden, ist aber nicht vollständig vorhanden. Bitte versuchen Sie es in einiger Zeit erneut."
-    ></app-error-alert>
-  </div>
-
   <div class="mt-3 ta-center">
-    <a *ngIf="step === 1" href="#" (click)="onResetClick()">
-      <img class="rotate-left-arrow" src="assets/img/rotate-left-solid.svg" alt="Rotate Left" />
-      <small>Zurücksetzen</small></a
+    <a *ngIf="step === 1 && !product" href="#" (click)="onResetClick()">
+      <img class="rotate-left-arrow" src="assets/img/close-solid.svg" alt="Close" />
+      <small>Beenden</small></a
     >
 
-    <a *ngIf="step >= 2" href="#" (click)="onStartScanning()">
-      <img class="rotate-left-arrow" src="assets/img/barcode-solid.svg" alt="Barcode" />
+    <a *ngIf="product" href="#" (click)="onStartScanning()">
+      <img class="rotate-left-arrow" src="assets/img/rotate-left-solid.svg" alt="Rotate Left" />
       <small>Erneut scannen</small></a
     >
   </div>

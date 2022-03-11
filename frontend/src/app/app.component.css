@@ -13,9 +13,9 @@
 }
 
 .img-upload-container {
+  box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
   height: 30vh;
   border-radius: 10px;
-  border: 1px dashed rgb(190, 190, 190);
   background-color: rgb(245, 245, 245);
   display: grid;
   cursor: pointer;
@@ -26,16 +26,10 @@
 
 .img-upload-container:hover {
   background-color: rgb(240, 240, 240);
-  border-color: rgb(150, 150, 150);
 }
 
 .img-upload-container__icon {
-  opacity: 0.6;
+  opacity: 1;
   margin-bottom: 5px;
   width: 64px;
-}
-
-.highlighted-barcode {
-  background-color: #ffff004d;
-  padding: 3px;
 }

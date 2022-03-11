@@ -16,9 +16,6 @@ export class AppComponent {
   step = 0;
   barcode = '';
   product?: Product;
-  productNotFoundError?: Error;
-  productIncompleteError?: Error;
-
   constructor(private productService: ProductService) {}
 
   onStartScanning() {
@@ -27,36 +24,26 @@ export class AppComponent {
   }
 
   onBarcodeDetect(barcode: string) {
-    this.barcode = barcode;
-    this.step++;
+    this.lookupBarcode(barcode);
   }
 
-  onCalculateNutriscoreClick() {
-    this.step++;
-
-    this.productService.getProductByBarcode(this.barcode).subscribe({
-      next: product => {
-        this.product = product;
-        this.step++;
-      },
+  private lookupBarcode(barcode: string) {
+    this.productService.getProductByBarcode(barcode).subscribe({
+      next: product => (this.product = product),
       error: err => {
         switch (err) {
           case this.productService.errorTypes.productNotFoundError:
             // Image contained a barcode but the barcode
             // was not found in the OpenFoodFacts Database.
-            this.productNotFoundError = err;
             break;
           case this.productService.errorTypes.productIncompleteError:
-            // Image contained a barcode but the barcode
-            // was not found in the OpenFoodFacts Database.
-            this.productIncompleteError = err;
+            // Image contained a barcode, which existed in the Database but
+            // the corresponding product was incomplete (e.g. nutriscore missing).
             break;
           default:
             // Stream failed but we don't know why.
             break;
         }
-
-        this.step++;
       },
     });
   }
@@ -64,8 +51,6 @@ export class AppComponent {
   onResetClick() {
     this.product = undefined;
     this.barcode = '';
-    this.productNotFoundError = undefined;
-    this.productIncompleteError = undefined;
     this.step = 0;
   }
 
