@@ -1,6 +1,6 @@
 export interface Product {
   name: string;
-  barcode: number;
+  barcode: string;
   nutriscoreGrade: 'a' | 'b' | 'c' | 'd' | 'e';
   brand: string;
   quantity?: string;

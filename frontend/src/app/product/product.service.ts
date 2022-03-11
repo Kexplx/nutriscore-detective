@@ -18,7 +18,7 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
-  getProductByBarcode(barcode: number): Observable<Product> {
+  getProductByBarcode(barcode: string): Observable<Product> {
     const url = `${environment.barcodeToProductApi}/${barcode}.json`;
 
     return this.http.get<ProductRaw>(url).pipe(

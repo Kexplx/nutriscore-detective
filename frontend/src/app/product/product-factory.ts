@@ -16,7 +16,7 @@ export class ProductFactory {
     };
 
     const product: Product = {
-      barcode: Number(productRaw.code),
+      barcode: productRaw.code,
       name: productRaw.product.product_name,
       nutriscoreGrade: productRaw.product.nutriscore_grade,
       brand: productRaw.product.brands.split(',')[0],
@@ -28,7 +28,7 @@ export class ProductFactory {
 
   static createDummy(): Product {
     const product: Product = {
-      barcode: 1234567890,
+      barcode: '1234567890',
       name: 'Reis',
       nutriscoreGrade: 'a',
       brand: 'Oscars Rice Plant',

@@ -14,7 +14,7 @@ export class AppComponent {
   detectiveClickCount = 0;
 
   step = 0;
-  barcode = 4018077242298;
+  barcode = '';
   product?: Product;
   productNotFoundError?: Error;
   productIncompleteError?: Error;
@@ -26,7 +26,7 @@ export class AppComponent {
     this.step = 1;
   }
 
-  onBarcodeDetect(barcode: number) {
+  onBarcodeDetect(barcode: string) {
     this.barcode = barcode;
     this.step++;
   }
@@ -63,7 +63,7 @@ export class AppComponent {
 
   onResetClick() {
     this.product = undefined;
-    this.barcode = 0;
+    this.barcode = '';
     this.productNotFoundError = undefined;
     this.productIncompleteError = undefined;
     this.step = 0;
