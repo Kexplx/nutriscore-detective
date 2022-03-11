@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./nutriscore.component.css'],
 })
 export class NutriscoreComponent {
-  @Input() grade = 'a';
+  @Input() grade = 'all';
 }

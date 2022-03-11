@@ -9,6 +9,7 @@ import { NutriscoreComponent } from './nutriscore/nutriscore.component';
 import { Ean13Pipe } from './ean-13.pipe';
 import { BarcodeScannerComponent } from './barcode-scanner/barcode-scanner.component';
 import { GermanDatePipe } from './german-date.pipe';
+import { NutriscoreInfoComponent } from './nutriscore-info/nutriscore-info.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { GermanDatePipe } from './german-date.pipe';
     Ean13Pipe,
     BarcodeScannerComponent,
     GermanDatePipe,
+    NutriscoreInfoComponent,
   ],
   imports: [BrowserModule, HttpClientModule],
   providers: [],

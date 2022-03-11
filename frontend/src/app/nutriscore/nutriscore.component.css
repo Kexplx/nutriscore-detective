@@ -12,6 +12,10 @@
   margin: 0;
 }
 
+.grade.fullopacity {
+  opacity: 1;
+}
+
 .grade:first-child {
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;

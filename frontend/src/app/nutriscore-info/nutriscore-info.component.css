@@ -1,0 +1,28 @@
+div {
+  background-color: rgba(79, 149, 255, 0.2);
+  padding: 10px;
+  border-radius: 10px;
+}
+
+h2 {
+  line-height: 1.2;
+  font-size: 1.1rem;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+}
+
+img {
+  width: 15px;
+  transform: rotate(90deg);
+}
+
+img.rotated {
+  transform: rotate(180deg);
+}
+
+p {
+  padding-left: 24px;
+  line-height: 1.2;
+  text-align: justify;
+}

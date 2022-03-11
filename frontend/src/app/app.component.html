@@ -2,17 +2,19 @@
   <ng-container *ngIf="detectiveClickCount === 3">
     <p><strong>Commit Sha:</strong> {{ commitSha }}</p>
     <p><strong>Commit Date:</strong> {{ commitIsoDate | germanDate }}</p>
+    <p>Programming by Oscar, commas by J.DBS</p>
   </ng-container>
 
   <h1>
     Nutri-Score Detektiv
-
     <img (click)="onDetectiveClicked()" src="assets/img/detective.png" style="width: 64px; vertical-align: sub; cursor: pointer" alt="" />
   </h1>
   <h2 class="subheader mt-1">
     Fehlt der <a href="https://de.wikipedia.org/wiki/Nutri-Score" target="_blank">Nutri-Score</a> auf einem Produkt? <strong>Kein Problem</strong>. Scannen Sie einfach den Strichcode auf der Rückseite
     der Packung und wir berechnen den Score für Sie.
   </h2>
+
+  <app-nutriscore-info></app-nutriscore-info>
 
   <div *ngIf="step === 0" class="img-upload-container mt-3" (click)="onStartScanning()">
     <div>
@@ -22,7 +24,7 @@
   </div>
 
   <div *ngIf="step === 1" class="mt-3">
-    <app-barcode-scanner (detected)="onBarcodeDetect($event)"></app-barcode-scanner>
+    <app-barcode-scanner (detect)="onBarcodeDetect($event)"></app-barcode-scanner>
   </div>
 
   <div *ngIf="step === 2" class="mt-3">

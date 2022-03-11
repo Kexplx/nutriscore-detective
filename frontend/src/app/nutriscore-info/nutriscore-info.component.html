@@ -1,0 +1,23 @@
+<div class="mt-1">
+  <h2 (click)="isOpen = !isOpen" class="title">
+    <img [class.rotated]="isOpen" src="assets/img/angle-up-solid.svg" alt="Caret Right" />
+    <span class="ml-1">Was ist ein Nutri-Score?</span>
+  </h2>
+
+  <p *ngIf="isOpen" class="mt-2">
+    Der <strong>Nutri-Score</strong> ist ein Wert auf einer Skala von A - E mit dem der Nährwert von Lebensmitteln bewertet wird (A = gesund, E = ungesund).
+    <br />
+    <br />
+    <app-nutriscore></app-nutriscore>
+    <span class="mt-1"> </span>
+
+    <br />
+    Enthält ein Produkt also viel Zucker, gesättigte Fettsäuren oder Salz, verschlechtert sich die Bewertung. Enthält das Produkt hingegen genügend Proteine, Ballaststoffe oder einen hohen Anteil an
+    Obst, Gemüse und Nüssen, verbessert sich die Bewertung.
+
+    <br /><br />
+
+    In Deutschland sind die Hersteller von Lebensmitteln nicht dazu verpflichtet, ihre Produkte mit dem Nutri-Score zu kennzeichnen, weshalb dieser gerade bei ungesunden Lebensmitteln mit einer
+    schlechten Bewertung von D oder E oftmals fehlt.
+  </p>
+</div>
