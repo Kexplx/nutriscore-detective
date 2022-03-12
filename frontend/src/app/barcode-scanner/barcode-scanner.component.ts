@@ -29,7 +29,6 @@ export class BarcodeScannerComponent implements OnInit, OnDestroy {
         decoder: {
           readers: ['ean_reader'],
         },
-        frequency: 15,
       },
       () => {
         this.isScanning = true;
