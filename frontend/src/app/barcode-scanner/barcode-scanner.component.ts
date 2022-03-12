@@ -29,7 +29,6 @@ export class BarcodeScannerComponent implements OnInit, OnDestroy {
         decoder: {
           readers: ['ean_reader'],
         },
-        numOfWorkers: navigator.hardwareConcurrency,
       },
       () => {
         this.isScanning = true;
